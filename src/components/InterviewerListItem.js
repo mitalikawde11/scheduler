@@ -14,10 +14,9 @@ export default function InterviewerListItem(props) {
         className="interviewers__item-image"
         src={props.avatar}
         alt={props.name}
-        // src="https://i.imgur.com/LpaY82x.png"
-        // alt="Sylvia Palmer"
       />
       {props.selected && props.name}
     </li>
   );
+  
 };
