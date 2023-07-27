@@ -60,4 +60,27 @@ export function getInterview(state, interview) {
 
   return interviewData;
 
-}
+};
+
+
+export function getInterviewersForDay(state, day) {
+  let result = [];
+ 
+  if (!state.days) {
+    return result;
+  }
+  
+  // ----- 1 method: interviewers as object
+  for (const e of state.days) {
+    if (e.name === day) {
+      const interviewersArr = e.interviewers;
+      for (const key in state.interviewers) {
+        if (interviewersArr.includes(state.interviewers[key].id)) {
+          result.push(state.interviewers[key]);
+        }
+      }
+    } 
+  }
+
+  return result;
+};
