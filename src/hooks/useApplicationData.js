@@ -20,7 +20,7 @@ export default function useApplicationData() {
     ]).then((all) => {
        setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }))
     })
-    .then(error => console.error(error))
+    // .then(error => console.error(error))
   }, []);
   
   function bookInterview(id, interview) {
