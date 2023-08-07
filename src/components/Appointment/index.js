@@ -40,6 +40,10 @@ export default function Appointment(props) {
     transition(EMPTY);
   }
 
+  function edit() {
+    transition(EDIT);
+  }
+
   function destroy(event) {
     transition(DELETING, true);
     props.cancelInterview(props.id)
@@ -55,10 +59,7 @@ export default function Appointment(props) {
     transition(SHOW);
   }
 
-  function edit() {
-    transition(EDIT);
-  }
-
+ 
   return (
     <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
@@ -83,13 +84,10 @@ export default function Appointment(props) {
       )}
       {mode === CONFIRM && (
         <Confirm
-          message="Are you sure you would like to delete"
+          message="Are you sure you would like to delete?"
           onConfirm={destroy}
           onCancel={back}
         />
-      )}
-      {mode === DELETING && (
-        <Status message="Deleting" />
       )}
       {mode === EDIT && (
         <Form
@@ -100,16 +98,19 @@ export default function Appointment(props) {
           onCancel={back}
         />
       )}
-      {mode === ERROR_DELETE && (
-        <Error
-          message="Could not cancel appointment."
-          onClose={destroyError}
-        />
-      )}
       {mode === ERROR_SAVE && (
         <Error
           message="Could not save appointment"
           onClose={saveError}
+        />
+      )}
+      {mode === DELETING && (
+        <Status message="Deleting" />
+      )}
+      {mode === ERROR_DELETE && (
+        <Error
+          message="Could not cancel appointment."
+          onClose={destroyError}
         />
       )}
     </article>
