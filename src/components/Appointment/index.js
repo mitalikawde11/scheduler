@@ -9,7 +9,6 @@ import Status from "./Status";
 import Confirm from "./Confirm";
 import Error from "./Error";
 
-
 export default function Appointment(props) {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -34,22 +33,22 @@ export default function Appointment(props) {
     props.bookInterview(props.id, interview)
     .then(() => transition(SHOW))
     .catch(error => transition(ERROR_SAVE, true));
-  }
+  };
 
   function saveError() {
     transition(EMPTY);
-  }
+  };
 
   function edit() {
     transition(EDIT);
-  }
+  };
 
   function destroy(event) {
     transition(DELETING, true);
     props.cancelInterview(props.id)
     .then(() => transition(EMPTY))
     .catch(error => transition(ERROR_DELETE, true))
-  }
+  };
 
   function deleteInterview() {
     transition(CONFIRM);
@@ -57,8 +56,7 @@ export default function Appointment(props) {
 
   function destroyError() {
     transition(SHOW);
-  }
-
+  };
  
   return (
     <article className="appointment" data-testid="appointment">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default function useVisualMode(initial) {
   const [history, setHistory] = useState([initial]);
@@ -9,13 +9,11 @@ export default function useVisualMode(initial) {
     setHistory(prev => replace ?  [...prev.slice(0,-1), newMode] :  [...prev, newMode] )
       
   };
-
   
   function back() {
     if (history.length === 1) {
       return;
     }
-
     //the slice removes the last element
     setHistory(prev =>  prev.slice(0,-1))
   };

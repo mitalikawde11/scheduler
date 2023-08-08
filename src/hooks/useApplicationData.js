@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function useApplicationData() {
@@ -22,6 +22,7 @@ export default function useApplicationData() {
     })
   }, []);
   
+  // books an interview
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -38,8 +39,9 @@ export default function useApplicationData() {
         return { ...prev, appointments}
       })
     })
-  }
+  };
   
+  // delete interview
   function cancelInterview(id) {
     const appointment = {
       ...state.appointments[id],
@@ -56,8 +58,9 @@ export default function useApplicationData() {
         return { ...prev, appointments}
       })
     })
-  }
+  };
 
+  // update spots when book or cancel interview 
   function updateSpots(appointments) {
     const dayObject = state.days.find(day => {
       if (day.name === state.day) {
@@ -67,7 +70,7 @@ export default function useApplicationData() {
     const appointmentArrOfDay = dayObject.appointments;
     let spots = 0;
     for (const key in appointments) {
-      const appointment = appointments[key]
+      const appointment = appointments[key];
       if (appointmentArrOfDay.includes(appointment.id)) {
         if (!appointment.interview) {
           spots += 1;
@@ -82,7 +85,7 @@ export default function useApplicationData() {
           }
           return prev;
         })
-  }
+  };
 
   return { state, setDay, bookInterview, cancelInterview }
 }
