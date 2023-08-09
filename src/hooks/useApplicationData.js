@@ -64,8 +64,9 @@ export default function useApplicationData() {
   function updateSpots(appointments) {
     const dayObject = state.days.find(day => {
       if (day.name === state.day) {
-        return day
+        return day;
       }
+      return null;
     })
     const appointmentArrOfDay = dayObject.appointments;
     let spots = 0;
